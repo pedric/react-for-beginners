@@ -1,5 +1,5 @@
 import React from "react";
-import Example from "./components/Example";
+import FunctionalComponent from "./components/FunctionalComponent";
 
 class App extends React.Component {
   constructor() {
@@ -10,8 +10,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Base component</h1>
-        <Example />
+        <FunctionalComponent description="Example of a functional component." color="#f1f1f1" />
       </div>
     );
   }

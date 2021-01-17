@@ -1,3 +1,8 @@
-# Frontend dev env.
+# A simple setup to learn React
 
-A frontend boilerplate based on webpack, babel and react.
+I plan to build example components for you to play around with.<br/>
+Including class components, functional components, hooks, styled components and more.
+
+<code>
+npm i && npm start
+</code>
