@@ -1,6 +1,8 @@
-//@import "settings/_settings.main";
-//@import "components/_components.main";
-@import "_tailwind";
+@import "settings/_settings.main";
+@import "components/_components.main";
+//@import "_tailwind";
+
 body {
+  margin: 20px;
   font-family: sans-serif;
 }

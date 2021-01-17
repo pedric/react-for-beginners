@@ -1,7 +1,7 @@
-import React from "react";
-import FunctionalComponent from "./components/FunctionalComponent";
+import React, { Component } from "react";
+import Counters from "./components/Counters";
 
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {};
@@ -10,7 +10,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <FunctionalComponent description="Example of a functional component." color="#f1f1f1" />
+        <Counters description="Example of a functional component." color="#f1f1f1" />
       </div>
     );
   }

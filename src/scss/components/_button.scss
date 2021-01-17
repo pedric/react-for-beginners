@@ -1,0 +1,13 @@
+.btn {
+  color: $white;
+  background: $black;
+  padding: 0.5em 1em;
+  margin: 4px;
+  outline: none;
+  border-radius: 2em;
+  border: none;
+
+  &--error {
+    background: $error;
+  }
+}
