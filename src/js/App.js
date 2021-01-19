@@ -4,6 +4,11 @@ import NavBar from "./components/navbar";
 
 class App extends Component {
   
+  //
+  // This class component logs 1, 2, 3 to display the lifecycle hooks in the console.
+  // constructor -> render -> componentDidMount
+  //
+
   constructor(){
     super()
     this.state = {
@@ -14,6 +19,8 @@ class App extends Component {
         { id: 4, value: 3 },
       ]
     }
+    console.log('component lifecycle hooks')
+    console.log(1, 'constructor()')
   }
 
   handleIncrement = counter => {
@@ -37,12 +44,19 @@ class App extends Component {
     this.setState({ counters })
   }
 
+  componentDidMount(){
+    console.log(3, 'componentDidMount()')
+  }
+
   totalItems = () => {
     const activeCounters = this.state.counters.filter(counter => counter.value > 0);
     this.setState({ totalNumberOfItems : activeCounters.length })
   }
 
   render() {
+  
+    console.log(2, 'render()')
+
     return (
       <React.Fragment>
         <NavBar numberOfItems={this.state.counters.filter(c => c.value > 0).length} />
