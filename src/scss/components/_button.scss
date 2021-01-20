@@ -10,4 +10,8 @@
   &--error {
     background: $error;
   }
+
+  &.disabled {
+    background: lightgray;
+  }
 }

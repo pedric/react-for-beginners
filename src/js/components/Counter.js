@@ -6,6 +6,14 @@ class Counter extends Component {
     super(props)
   }
 
+  componentDidUpdate(){
+    console.log('Counter - componentDidUpdate()')
+  }
+
+  componentWillUnmount(){
+    console.log('Counter - componentWillUnmount()')
+  }
+
   formatItems = () => {
     return this.props.value <= 0 ? 'zero' : this.props.value ;
   }
@@ -23,8 +31,9 @@ class Counter extends Component {
     return (
       <div className={'counter'} style={{marginBottom: '10px'}}>
         <span style={counterStyle}>{this.formatItems()}</span>
-        <button className={'btn'} onClick={() => this.props.onIncrement(this.props.counter)}>Increment</button>
-        <button className={'btn btn--error'} onClick={() => this.props.onDelete(this.props.counter.id)}>Delete</button>
+        <button className={'btn'} onClick={() => this.props.onIncrement(this.props.counter)}>+</button>
+        <button className={this.props.counter.value <= 0 ? 'btn disabled' : 'btn'} onClick={() => this.props.onDecrement(this.props.counter)}>-</button>
+        <button className={'btn btn--error'} onClick={() => this.props.onDelete(this.props.counter.id)}>x</button>
       </div>
       );
   }

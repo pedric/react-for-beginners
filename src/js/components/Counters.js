@@ -9,7 +9,7 @@ class Counters extends Component {
 
   render(){
 
-    const { counters, Delete, Increment, Reset } = this.props;
+    const { counters, Delete, Increment, Decrement, Reset } = this.props;
 
     const countersMapped = counters.map(counter => 
       <Counter 
@@ -17,6 +17,7 @@ class Counters extends Component {
       value={counter.value} 
       onDelete={Delete}
       onIncrement={Increment}
+      onDecrement={Decrement}
       counter={counter} 
       selected />
     )

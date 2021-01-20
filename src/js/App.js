@@ -14,13 +14,23 @@ class App extends Component {
     this.state = {
       counters: [
         { id: 1, value: 0 },
-        { id: 2, value: 4 },
+        { id: 2, value: 0 },
         { id: 3, value: 0 },
-        { id: 4, value: 3 },
+        { id: 4, value: 0 },
       ]
     }
-    console.log('component lifecycle hooks')
+    console.log('component lifecycle hooks displayed')
     console.log(1, 'constructor()')
+  }
+
+  handleDecrement = counter => {
+    const counters = [...this.state.counters]
+    const index = counters.indexOf(counter)
+    counters[index] = { ...counter }
+    if(counters[index].value > 0){
+      counters[index].value--
+      this.setState({ counters })
+    }
   }
 
   handleIncrement = counter => {
@@ -64,7 +74,8 @@ class App extends Component {
         counters={this.state.counters}
         Reset={this.handleReset}
         Delete={this.handleDelete}
-        Increment={this.handleIncrement} />
+        Increment={this.handleIncrement}
+        Decrement={this.handleDecrement} />
       </React.Fragment>
     );
   }
