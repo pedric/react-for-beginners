@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Counters from "./components/Counters";
 import NavBar from "./components/navbar";
 import Movies from "./components/Movies";
+import Pagination from "./components/Pagination";
 
 class App extends Component {
   
