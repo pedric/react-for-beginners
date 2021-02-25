@@ -11,13 +11,16 @@ class Movies extends Component {
     this.state = { 
       movies: [],
       genres: [],
+      currentGenre: false,
       pageSize: 4,
       currentPage: 1
     }
   }
 
   componentDidMount = () => {
-    this.setState({ genres: getGenres(), movies: getMovies() });
+    const genres = [{ name: 'All Genres' }, ...getGenres()];
+    const movies = getMovies();
+    this.setState({ genres, movies });
   }
 
   handleSave = movie => {
@@ -38,41 +41,39 @@ class Movies extends Component {
     this.setState({ movies })
   }
 
-  handleFilter = filter => {
-    if(filter.toLowerCase() === 'all movies') {
-      this.setState({ movies: getMovies() });
-    } else {
-      const movies = this.state.movies.filter(movie => movie.genre.name.toLowerCase() === filter.toLowerCase() )
-    this.setState({ movies });
-    }
+  selectGenre = genre => {
+      this.setState({ currentGenre: genre, currentPage: 1 });
   }
 
   render() {
     const { length: count } = this.state.movies;
-    const { currentPage, pageSize, movies: allMovies } = this.state;
+    const { currentPage, pageSize, movies: allMovies, currentGenre } = this.state;
 
     const style = {
       background: 'rgba(0,0,0,.05)',
       padding: '20px'
     }
 
+    const filteredMovies = currentGenre && currentGenre._id
+    ? allMovies.filter(m => m.genre._id === currentGenre._id)
+    : allMovies;
+
     // if(count <= 0){ return <p>Sorry, no movies found.</p>}
 
-    const paginatedMovies = paginate(allMovies, currentPage, pageSize);
+    const paginatedMovies = paginate(filteredMovies, currentPage, pageSize);
 
     return (
       <React.Fragment>
         <div style={style}>
           <Filter 
-          onFilter={this.handleFilter}
-          filters={this.state.genres}
-          textProperty="name"
-          valueProperty ="_id"
+          onFilter={this.selectGenre}
+          genres={this.state.genres}
+          activeGenre={this.state.currentGenre}
           />
         </div>
         <div style={style}>
           <h2>Movie class component</h2>
-          <p>{count} movies found</p>
+          <p>{filteredMovies.length} movies found</p>
           <table>
             <thead>
               <tr>
@@ -101,7 +102,7 @@ class Movies extends Component {
             </tbody>
           </table>
           <Pagination 
-            itemsCount={count}
+            itemsCount={filteredMovies.length}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.handlePageChange} />

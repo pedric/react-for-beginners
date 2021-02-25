@@ -11,19 +11,29 @@ const Filter = (props) => {
     margin: '0 8px'
   };
 
-  const { filters, onFilter, textProperty, valueProperty } = props;
+  const { genres, onFilter, textProperty, valueProperty, activeGenre } = props;
 
   return(
     <div>
-      {filters.map(filter => (
-        <span style={style} key={filter[valueProperty]} onClick={ () => onFilter(filter[textProperty])}>{filter[textProperty]}</span>
+      {genres.map(genre => (
+        <span
+          className={genre === activeGenre ? 'active' : ''}
+          style={style} 
+          key={genre[valueProperty]} 
+          onClick={ () => onFilter(genre)}>{genre[textProperty]}
+        </span>
       ))}
     </div>
   )
 }
 
-Filter.propTypes = {
+Filter.defaultProps = {
+  textProperty: 'name',
+  valueProperty: '_id'
+};
 
+Filter.propTypes = {
+  onFilter: PropTypes.func.isRequired
 };
 
 export default Filter;

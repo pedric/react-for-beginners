@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Counters from "./components/Counters";
 import NavBar from "./components/navbar";
 import Movies from "./components/Movies";
-import Pagination from "./components/Pagination";
+import StatefulCounterFunction from './components/StatefulCounterFunction';
 
 class App extends Component {
   
@@ -72,6 +72,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <NavBar numberOfItems={this.state.counters.filter(c => c.value > 0).length} />
+        <StatefulCounterFunction />
         <Counters
         counters={this.state.counters}
         Reset={this.handleReset}
